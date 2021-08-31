@@ -1,11 +1,11 @@
 import fetch from 'node-fetch';
-import * as fs from 'fs';
+import {URLSearchParams} from 'url';
 
 const pathToUltsky = 'D:/Games/UltSky'
 
 async function makeLoadOrder() {
-    const formData = new FormData();
-    const files = document.querySelector('input[type="file"][multiple]');
+    const formData = new URLSearchParams();
+    // const files = document.querySelector('input[type="file"][multiple]');
 
     formData.append('name', 'test')
     formData.append('game_id', '3')
@@ -16,9 +16,11 @@ async function makeLoadOrder() {
         headers: {
             'Accept': 'application/json'
         }
-      });
-      console.log(await response.json());
+    });
+    console.log(await response.json());
 }
+
+makeLoadOrder()
 
 /*
 async function getFile(path: string) {
@@ -27,7 +29,7 @@ async function getFile(path: string) {
             return console.error(err);
         }
         return data;
-    });     
+    });
 }
 
 getFile(`${pathToUltsky}/content/profiles/UltSky (High Preset)/loadorder.txt`);
